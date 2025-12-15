@@ -166,9 +166,9 @@
 .stagger-3 { animation-delay: 0.3s; opacity: 0; }
 .stagger-4 { animation-delay: 0.4s; opacity: 0; }
 
-/* Mobile container - deprecated, using inline styles now */
+/* Mobile container */
 .mobile-container {
-  @apply min-h-full;
+  @apply max-w-md mx-auto min-h-screen;
 }
 
 /* Decorative background pattern */
