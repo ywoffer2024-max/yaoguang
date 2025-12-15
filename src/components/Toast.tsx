@@ -3,6 +3,7 @@ import { Check } from 'lucide-react';
 
 interface ToastProps {
   message: string;
+  subMessage?: string;
   visible: boolean;
   onHide: () => void;
   duration?: number;
@@ -10,6 +11,7 @@ interface ToastProps {
 
 export const Toast: React.FC<ToastProps> = ({
   message,
+  subMessage,
   visible,
   onHide,
   duration = 2000,
@@ -27,10 +29,15 @@ export const Toast: React.FC<ToastProps> = ({
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50 px-6">
       <div className="bg-card text-card-foreground px-6 py-4 rounded-2xl 
         flex items-center gap-3 shadow-lg animate-scale-in">
-        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
+        <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center flex-shrink-0">
           <Check className="w-4 h-4 text-white" />
         </div>
-        <span className="font-medium">{message}</span>
+        <div className="flex flex-col">
+          <span className="font-medium">{message}</span>
+          {subMessage && (
+            <span className="text-sm text-muted-foreground">{subMessage}</span>
+          )}
+        </div>
       </div>
     </div>
   );
@@ -38,14 +45,14 @@ export const Toast: React.FC<ToastProps> = ({
 
 // Hook for easy toast usage
 export const useToastState = () => {
-  const [toast, setToast] = React.useState({ visible: false, message: '' });
+  const [toast, setToast] = React.useState({ visible: false, message: '', subMessage: '' });
 
-  const showToast = (message: string) => {
-    setToast({ visible: true, message });
+  const showToast = (message: string, subMessage?: string) => {
+    setToast({ visible: true, message, subMessage: subMessage || '' });
   };
 
   const hideToast = () => {
-    setToast({ visible: false, message: '' });
+    setToast({ visible: false, message: '', subMessage: '' });
   };
 
   return { toast, showToast, hideToast };
