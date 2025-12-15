@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/MobileLayout';
 import { Button } from '@/components/ui/button';
@@ -7,12 +7,15 @@ import { BrandLogo } from '@/components/BrandLogo';
 import { useBlessing } from '@/context/BlessingContext';
 import { Lock, Download } from 'lucide-react';
 import { Toast, useToastState } from '@/components/Toast';
+import html2canvas from 'html2canvas';
 
 const BlessingViewPage: React.FC = () => {
   const navigate = useNavigate();
   const { state, setIsUnlocked } = useBlessing();
   const [passwordError, setPasswordError] = useState(false);
+  const [isSaving, setIsSaving] = useState(false);
   const { toast, showToast, hideToast } = useToastState();
+  const posterRef = useRef<HTMLDivElement>(null);
 
   const mockBlessingText = state.blessingText || '愿你前程似锦，繁花似梦\n心中有光，步履生辉\n所遇皆良人，所行皆坦途';
 
@@ -27,8 +30,39 @@ const BlessingViewPage: React.FC = () => {
     }
   };
 
-  const handleShare = () => {
-    showToast('分享功能即将上线');
+  const handleSavePoster = async () => {
+    if (!posterRef.current || isSaving) return;
+
+    setIsSaving(true);
+    try {
+      const canvas = await html2canvas(posterRef.current, {
+        backgroundColor: null,
+        scale: 2,
+        useCORS: true,
+        logging: false,
+      });
+
+      // Convert to blob and download
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const url = URL.createObjectURL(blob);
+          const link = document.createElement('a');
+          link.href = url;
+          link.download = `祝福海报_${new Date().toLocaleDateString('zh-CN').replace(/\//g, '-')}.png`;
+          document.body.appendChild(link);
+          link.click();
+          document.body.removeChild(link);
+          URL.revokeObjectURL(url);
+          
+          showToast('已保存到相册', '可前往微信分享给 TA');
+        }
+      }, 'image/png');
+    } catch (error) {
+      console.error('Error saving poster:', error);
+      showToast('保存失败，请重试');
+    } finally {
+      setIsSaving(false);
+    }
   };
 
   const handleBack = () => {
@@ -45,7 +79,7 @@ const BlessingViewPage: React.FC = () => {
   if (needsPassword) {
     return (
       <MobileLayout className="min-h-screen flex flex-col items-center justify-center px-6" useSecondaryBg>
-        <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
+        <Toast message={toast.message} subMessage={toast.subMessage} visible={toast.visible} onHide={hideToast} />
 
         {/* Password Card */}
         <div className="w-full max-w-sm animate-fade-in">
@@ -90,52 +124,56 @@ const BlessingViewPage: React.FC = () => {
   // Unlocked View - Blessing Poster
   return (
     <MobileLayout className="min-h-screen flex flex-col" useSecondaryBg>
-      <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
+      <Toast message={toast.message} subMessage={toast.subMessage} visible={toast.visible} onHide={hideToast} />
 
-      {/* Header with Logo */}
-      <header className="pt-8 pb-6">
-        <BrandLogo size="md" />
-      </header>
+      {/* Poster Area for Screenshot */}
+      <div ref={posterRef} className="flex-1 flex flex-col bg-background bg-pattern">
+        {/* Header with Logo */}
+        <header className="pt-8 pb-6">
+          <BrandLogo size="md" />
+        </header>
 
-      {/* Poster Content */}
-      <main className="flex-1 px-5 pb-6">
-        <div className="animate-fade-in-up">
-          {/* Blessing Card */}
-          <div className="bg-card rounded-2xl shadow-card-custom overflow-hidden relative">
-            {/* Corner decorations */}
-            <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-brand-gold/30" />
-            <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-brand-gold/30" />
-            <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-brand-gold/30" />
-            <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-brand-gold/30" />
+        {/* Poster Content */}
+        <main className="flex-1 px-5 pb-6">
+          <div className="animate-fade-in-up">
+            {/* Blessing Card */}
+            <div className="bg-card rounded-2xl shadow-card-custom overflow-hidden relative">
+              {/* Corner decorations */}
+              <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-brand-gold/30" />
+              <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-brand-gold/30" />
+              <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-brand-gold/30" />
+              <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-brand-gold/30" />
 
-            {/* Content */}
-            <div className="px-8 py-16 min-h-[400px] flex flex-col justify-between">
-              {/* Blessing Text */}
-              <div className="flex-1 flex items-center justify-center">
-                <p className="text-xl text-card-foreground leading-loose text-center whitespace-pre-line font-medium">
-                  {mockBlessingText}
-                </p>
-              </div>
+              {/* Content */}
+              <div className="px-8 py-16 min-h-[400px] flex flex-col justify-between">
+                {/* Blessing Text */}
+                <div className="flex-1 flex items-center justify-center">
+                  <p className="text-xl text-card-foreground leading-loose text-center whitespace-pre-line font-medium">
+                    {mockBlessingText}
+                  </p>
+                </div>
 
-              {/* Date */}
-              <div className="text-center pt-8">
-                <p className="text-muted-foreground text-sm">{currentDate}</p>
+                {/* Date */}
+                <div className="text-center pt-8">
+                  <p className="text-muted-foreground text-sm">{currentDate}</p>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </div>
 
-      {/* Bottom Action */}
+      {/* Bottom Action - Outside poster area */}
       <div className="sticky bottom-0 p-5 bg-background/80 backdrop-blur-sm">
         <Button
           variant="gold"
           size="full"
-          onClick={handleShare}
+          onClick={handleSavePoster}
+          disabled={isSaving}
           className="gap-2 font-semibold animate-fade-in"
         >
           <Download className="w-5 h-5" />
-          保存祝福海报
+          {isSaving ? '保存中...' : '保存祝福海报'}
         </Button>
         
         {/* Footer text */}
