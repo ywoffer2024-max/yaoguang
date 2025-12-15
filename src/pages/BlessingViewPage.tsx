@@ -5,7 +5,7 @@ import { Button } from '@/components/ui/button';
 import { PasswordInput } from '@/components/PasswordInput';
 import { BrandLogo } from '@/components/BrandLogo';
 import { useBlessing } from '@/context/BlessingContext';
-import { Lock, Share2 } from 'lucide-react';
+import { Lock, Download } from 'lucide-react';
 import { Toast, useToastState } from '@/components/Toast';
 
 const BlessingViewPage: React.FC = () => {
@@ -134,8 +134,8 @@ const BlessingViewPage: React.FC = () => {
           onClick={handleShare}
           className="gap-2 font-semibold animate-fade-in"
         >
-          <Share2 className="w-5 h-5" />
-          生成分享海报
+          <Download className="w-5 h-5" />
+          保存祝福海报
         </Button>
         
         {/* Footer text */}
