@@ -3,8 +3,9 @@ import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/MobileLayout';
 import { Button } from '@/components/ui/button';
 import { PasswordInput } from '@/components/PasswordInput';
+import { BrandLogo } from '@/components/BrandLogo';
 import { useBlessing } from '@/context/BlessingContext';
-import { ArrowLeft, Lock, Share2, Sparkles } from 'lucide-react';
+import { Lock, Share2 } from 'lucide-react';
 import { Toast, useToastState } from '@/components/Toast';
 
 const BlessingViewPage: React.FC = () => {
@@ -13,9 +14,7 @@ const BlessingViewPage: React.FC = () => {
   const [passwordError, setPasswordError] = useState(false);
   const { toast, showToast, hideToast } = useToastState();
 
-  // If no blessing exists, redirect to home
-  const hasMockBlessing = state.hasBlessing || state.blessingText;
-  const mockBlessingText = state.blessingText || '愿你的每一天都充满阳光和笑容，愿你的梦想都能实现，愿幸福永远陪伴着你。';
+  const mockBlessingText = state.blessingText || '愿你前程似锦，繁花似梦\n心中有光，步履生辉\n所遇皆良人，所行皆坦途';
 
   const needsPassword = state.passwordEnabled && !state.isUnlocked;
 
@@ -32,49 +31,39 @@ const BlessingViewPage: React.FC = () => {
     showToast('分享功能即将上线');
   };
 
+  const handleBack = () => {
+    navigate('/home');
+  };
+
   const currentDate = new Date().toLocaleDateString('zh-CN', {
     year: 'numeric',
     month: 'long',
     day: 'numeric'
   });
 
-  // Locked View
+  // Locked View - Password Input
   if (needsPassword) {
     return (
-      <MobileLayout className="min-h-screen flex flex-col">
+      <MobileLayout className="min-h-screen flex flex-col items-center justify-center px-6">
         <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
 
-        {/* Header */}
-        <header className="sticky top-0 z-20 gradient-bg backdrop-blur-sm border-b border-border/50">
-          <div className="flex items-center justify-between px-4 py-4">
-            <button 
-              onClick={() => navigate('/home')}
-              className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-muted transition-colors"
-            >
-              <ArrowLeft className="w-5 h-5 text-foreground" />
-            </button>
-            <h1 className="font-semibold text-foreground">查看祝福</h1>
-            <div className="w-10" />
-          </div>
-        </header>
-
-        {/* Locked Content */}
-        <main className="flex-1 flex flex-col items-center justify-center px-6 py-10">
-          <div className="w-full max-w-sm space-y-8 text-center animate-fade-in">
+        {/* Password Card */}
+        <div className="w-full max-w-sm animate-fade-in">
+          <div className="bg-card rounded-3xl p-8 shadow-card-custom">
             {/* Lock Icon */}
-            <div className="w-20 h-20 mx-auto rounded-full bg-primary/10 flex items-center justify-center">
-              <div className="w-14 h-14 rounded-full gradient-blessing flex items-center justify-center shadow-button">
-                <Lock className="w-7 h-7 text-primary-foreground" />
+            <div className="flex justify-center mb-6">
+              <div className="w-16 h-16 rounded-full bg-brand-gold/15 flex items-center justify-center">
+                <Lock className="w-7 h-7 text-brand-gold" />
               </div>
             </div>
 
-            <div>
-              <h2 className="text-2xl font-bold text-foreground mb-2">输入密码</h2>
-              <p className="text-muted-foreground">请输入 4 位密码查看祝福</p>
-            </div>
+            {/* Title */}
+            <h2 className="text-xl font-semibold text-card-foreground text-center mb-6">
+              请输入密码
+            </h2>
 
             {/* Password Input */}
-            <div className="py-4">
+            <div className="mb-6">
               <PasswordInput
                 onComplete={handlePasswordComplete}
                 error={passwordError}
@@ -82,85 +71,55 @@ const BlessingViewPage: React.FC = () => {
               />
             </div>
 
-            {/* Error Message */}
-            {passwordError && (
-              <p className="text-destructive text-sm animate-fade-in">
+            {/* Error or hint message */}
+            {passwordError ? (
+              <p className="text-destructive text-sm text-center animate-fade-in">
                 密码不正确，请再试一次
+              </p>
+            ) : (
+              <p className="text-muted-foreground text-sm text-center leading-relaxed">
+                这份祝福已启用密码，请向送礼人索取查看密码
               </p>
             )}
           </div>
-        </main>
+        </div>
       </MobileLayout>
     );
   }
 
   // Unlocked View - Blessing Poster
   return (
-    <MobileLayout className="min-h-screen flex flex-col">
+    <MobileLayout className="min-h-screen flex flex-col" showTopClouds showBottomClouds>
       <Toast message={toast.message} visible={toast.visible} onHide={hideToast} />
 
-      {/* Header */}
-      <header className="sticky top-0 z-20 gradient-bg backdrop-blur-sm border-b border-border/50">
-        <div className="flex items-center justify-between px-4 py-4">
-          <button 
-            onClick={() => navigate('/home')}
-            className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-muted transition-colors"
-          >
-            <ArrowLeft className="w-5 h-5 text-foreground" />
-          </button>
-          <h1 className="font-semibold text-foreground">祝福卡片</h1>
-          <div className="w-10" />
-        </div>
+      {/* Header with Logo */}
+      <header className="pt-8 pb-6">
+        <BrandLogo size="md" />
       </header>
 
       {/* Poster Content */}
-      <main className="flex-1 px-5 py-6 overflow-y-auto">
+      <main className="flex-1 px-5 pb-6">
         <div className="animate-fade-in-up">
-          {/* Poster Card */}
-          <div className="bg-card rounded-3xl shadow-card border border-border/50 overflow-hidden">
-            {/* Brand Header */}
-            <div className="gradient-blessing px-6 py-5">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-2xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
-                  <Sparkles className="w-6 h-6 text-primary-foreground" />
-                </div>
-                <div>
-                  <h2 className="text-xl font-bold text-primary-foreground">祝福卡片</h2>
-                  <p className="text-primary-foreground/80 text-sm">用心传递温暖</p>
-                </div>
-              </div>
-            </div>
+          {/* Blessing Card */}
+          <div className="bg-card rounded-2xl shadow-card-custom overflow-hidden relative">
+            {/* Corner decorations */}
+            <div className="absolute top-4 left-4 w-6 h-6 border-l-2 border-t-2 border-brand-gold/30" />
+            <div className="absolute top-4 right-4 w-6 h-6 border-r-2 border-t-2 border-brand-gold/30" />
+            <div className="absolute bottom-4 left-4 w-6 h-6 border-l-2 border-b-2 border-brand-gold/30" />
+            <div className="absolute bottom-4 right-4 w-6 h-6 border-r-2 border-b-2 border-brand-gold/30" />
 
-            {/* Blessing Content */}
-            <div className="p-6 space-y-6">
-              {/* Decorative top */}
-              <div className="flex justify-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-8 h-0.5 bg-gradient-to-r from-transparent to-primary/30" />
-                  <Sparkles className="w-4 h-4 text-primary/50" />
-                  <div className="w-8 h-0.5 bg-gradient-to-l from-transparent to-primary/30" />
-                </div>
-              </div>
-
+            {/* Content */}
+            <div className="px-8 py-16 min-h-[400px] flex flex-col justify-between">
               {/* Blessing Text */}
-              <div className="bg-blessing-cream rounded-2xl p-5">
-                <p className="text-lg text-foreground leading-relaxed text-center whitespace-pre-wrap">
+              <div className="flex-1 flex items-center justify-center">
+                <p className="text-xl text-card-foreground leading-loose text-center whitespace-pre-line font-medium">
                   {mockBlessingText}
                 </p>
               </div>
 
-              {/* Decorative bottom */}
-              <div className="flex justify-center">
-                <div className="flex items-center gap-2">
-                  <div className="w-12 h-0.5 bg-gradient-to-r from-transparent to-accent/30" />
-                  <div className="w-2 h-2 rounded-full bg-accent/50" />
-                  <div className="w-12 h-0.5 bg-gradient-to-l from-transparent to-accent/30" />
-                </div>
-              </div>
-
               {/* Date */}
-              <div className="text-center">
-                <p className="text-sm text-muted-foreground">{currentDate}</p>
+              <div className="text-center pt-8">
+                <p className="text-muted-foreground text-sm">{currentDate}</p>
               </div>
             </div>
           </div>
@@ -168,16 +127,21 @@ const BlessingViewPage: React.FC = () => {
       </main>
 
       {/* Bottom Action */}
-      <div className="sticky bottom-0 p-5 gradient-bg border-t border-border/50">
+      <div className="sticky bottom-0 p-5 bg-background/80 backdrop-blur-sm">
         <Button
           variant="gold"
           size="full"
           onClick={handleShare}
-          className="gap-2 animate-fade-in"
+          className="gap-2 font-semibold animate-fade-in"
         >
           <Share2 className="w-5 h-5" />
           生成分享海报
         </Button>
+        
+        {/* Footer text */}
+        <p className="text-center text-brand-gold/60 text-sm mt-4">
+          祝你新年快乐·诸善如意·阖家幸福
+        </p>
       </div>
     </MobileLayout>
   );
