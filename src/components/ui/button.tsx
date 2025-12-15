@@ -9,16 +9,16 @@ const buttonVariants = cva(
   {
     variants: {
       variant: {
-        default: "gradient-blessing text-primary-foreground shadow-button hover:opacity-90",
+        default: "gradient-gold-btn text-primary-foreground shadow-soft-custom hover:opacity-90",
         destructive: "bg-destructive text-destructive-foreground hover:bg-destructive/90",
-        outline: "border-2 border-primary bg-transparent text-primary hover:bg-primary/5",
+        outline: "border-2 border-brand-gold/30 bg-transparent text-brand-gold hover:bg-brand-gold/10",
         secondary: "bg-secondary text-secondary-foreground hover:bg-secondary/80",
-        ghost: "hover:bg-accent hover:text-accent-foreground",
-        link: "text-primary underline-offset-4 hover:underline",
-        blessing: "gradient-blessing text-primary-foreground shadow-button hover:opacity-90 animate-pulse-glow",
-        gold: "gradient-gold text-foreground shadow-soft hover:opacity-90",
+        ghost: "hover:bg-muted hover:text-foreground",
+        link: "text-brand-gold underline-offset-4 hover:underline",
+        gold: "gradient-gold-btn text-primary-foreground shadow-soft-custom hover:opacity-90",
         muted: "bg-muted text-muted-foreground hover:bg-muted/80",
-        entry: "bg-card text-foreground border-2 border-border shadow-soft hover:border-primary hover:shadow-card",
+        entry: "bg-card text-card-foreground border border-border shadow-soft-custom hover:border-brand-gold",
+        tag: "bg-brand-gold/20 text-brand-gold text-sm px-4 py-1.5 rounded-full",
       },
       size: {
         default: "h-12 px-6 py-3",

@@ -1,17 +1,19 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/MobileLayout';
+import { BrandLogo } from '@/components/BrandLogo';
 import { Button } from '@/components/ui/button';
 import { useBlessing } from '@/context/BlessingContext';
-import { Sparkles, Gift } from 'lucide-react';
+import { Gift, Sparkles } from 'lucide-react';
 
 const EntryPage: React.FC = () => {
   const navigate = useNavigate();
-  const { setHasBlessing, resetState } = useBlessing();
+  const { setHasBlessing, resetState, setPasswordEnabled } = useBlessing();
 
   const handleWithBlessing = () => {
     resetState();
     setHasBlessing(true);
+    setPasswordEnabled(true); // Default to password enabled for demo
     navigate('/home');
   };
 
@@ -22,24 +24,16 @@ const EntryPage: React.FC = () => {
   };
 
   return (
-    <MobileLayout className="flex flex-col items-center justify-center min-h-screen px-6">
-      {/* Decorative background elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-20 h-20 rounded-full bg-primary/10 blur-2xl" />
-        <div className="absolute top-40 right-8 w-32 h-32 rounded-full bg-accent/10 blur-3xl" />
-        <div className="absolute bottom-40 left-20 w-24 h-24 rounded-full bg-secondary/10 blur-2xl" />
-      </div>
-
-      <div className="relative z-10 w-full max-w-sm space-y-8">
+    <MobileLayout className="flex flex-col items-center justify-center min-h-screen px-6" showTopClouds showBottomClouds>
+      <div className="relative z-10 w-full max-w-sm space-y-10">
         {/* Logo/Header */}
-        <div className="text-center space-y-4 animate-fade-in">
-          <div className="w-20 h-20 mx-auto rounded-3xl gradient-blessing flex items-center justify-center shadow-button animate-float">
-            <Sparkles className="w-10 h-10 text-primary-foreground" />
-          </div>
-          <h1 className="text-3xl font-bold text-foreground">
-            祝福卡片
-          </h1>
-          <p className="text-muted-foreground text-lg">
+        <div className="animate-fade-in">
+          <BrandLogo size="lg" />
+        </div>
+
+        {/* Subtitle */}
+        <div className="text-center animate-fade-in stagger-1">
+          <p className="text-foreground/70 text-lg">
             选择测试流程
           </p>
         </div>
@@ -49,12 +43,12 @@ const EntryPage: React.FC = () => {
           <Button
             variant="entry"
             size="xl"
-            className="w-full h-auto py-6 flex-col gap-2"
+            className="w-full h-auto py-5 flex-col gap-2 rounded-2xl"
             onClick={handleWithBlessing}
           >
             <div className="flex items-center gap-3">
-              <Gift className="w-6 h-6 text-primary" />
-              <span className="text-xl">有祝福</span>
+              <Gift className="w-5 h-5 text-brand-gold" />
+              <span className="text-lg text-card-foreground">有祝福</span>
             </div>
             <span className="text-sm text-muted-foreground font-normal">
               模拟已创建祝福的状态
@@ -64,12 +58,12 @@ const EntryPage: React.FC = () => {
           <Button
             variant="entry"
             size="xl"
-            className="w-full h-auto py-6 flex-col gap-2"
+            className="w-full h-auto py-5 flex-col gap-2 rounded-2xl"
             onClick={handleWithoutBlessing}
           >
             <div className="flex items-center gap-3">
-              <Sparkles className="w-6 h-6 text-secondary" />
-              <span className="text-xl">无祝福</span>
+              <Sparkles className="w-5 h-5 text-brand-gold" />
+              <span className="text-lg text-card-foreground">无祝福</span>
             </div>
             <span className="text-sm text-muted-foreground font-normal">
               模拟未创建祝福的状态

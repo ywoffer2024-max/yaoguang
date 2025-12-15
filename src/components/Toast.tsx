@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { Check } from 'lucide-react';
 
 interface ToastProps {
@@ -25,7 +25,7 @@ export const Toast: React.FC<ToastProps> = ({
 
   return (
     <div className="fixed inset-0 flex items-center justify-center pointer-events-none z-50 px-6">
-      <div className="bg-foreground/90 text-background px-6 py-4 rounded-2xl 
+      <div className="bg-card text-card-foreground px-6 py-4 rounded-2xl 
         flex items-center gap-3 shadow-lg animate-scale-in">
         <div className="w-6 h-6 rounded-full bg-green-500 flex items-center justify-center">
           <Check className="w-4 h-4 text-white" />
@@ -38,7 +38,7 @@ export const Toast: React.FC<ToastProps> = ({
 
 // Hook for easy toast usage
 export const useToastState = () => {
-  const [toast, setToast] = useState({ visible: false, message: '' });
+  const [toast, setToast] = React.useState({ visible: false, message: '' });
 
   const showToast = (message: string) => {
     setToast({ visible: true, message });

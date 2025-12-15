@@ -15,6 +15,7 @@ export default {
     extend: {
       fontFamily: {
         sans: ['"Noto Sans SC"', 'system-ui', 'sans-serif'],
+        serif: ['"Noto Serif SC"', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -50,13 +51,13 @@ export default {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        blessing: {
-          red: "hsl(var(--blessing-red))",
-          "red-dark": "hsl(var(--blessing-red-dark))",
-          gold: "hsl(var(--blessing-gold))",
-          "gold-light": "hsl(var(--blessing-gold-light))",
-          cream: "hsl(var(--blessing-cream))",
-          "warm-white": "hsl(var(--blessing-warm-white))",
+        brand: {
+          teal: "hsl(var(--brand-teal))",
+          "teal-light": "hsl(var(--brand-teal-light))",
+          gold: "hsl(var(--brand-gold))",
+          "gold-light": "hsl(var(--brand-gold-light))",
+          cream: "hsl(var(--brand-cream))",
+          "cream-dark": "hsl(var(--brand-cream-dark))",
         },
       },
       borderRadius: {

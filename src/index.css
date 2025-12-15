@@ -2,58 +2,65 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;500;600;700&family=Noto+Sans+SC:wght@300;400;500;600;700&display=swap');
 
 @layer base {
   :root {
-    --background: 30 30% 97%;
-    --foreground: 20 20% 15%;
+    /* Main brand colors - Dark teal theme */
+    --background: 168 35% 18%;
+    --foreground: 45 30% 92%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 20 20% 15%;
+    --card: 45 20% 96%;
+    --card-foreground: 168 30% 20%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 20 20% 15%;
+    --popover: 45 20% 96%;
+    --popover-foreground: 168 30% 20%;
 
-    --primary: 4 72% 56%;
-    --primary-foreground: 0 0% 100%;
+    --primary: 40 45% 65%;
+    --primary-foreground: 168 35% 18%;
 
-    --secondary: 35 80% 55%;
-    --secondary-foreground: 20 20% 15%;
+    --secondary: 168 25% 28%;
+    --secondary-foreground: 45 30% 92%;
 
-    --muted: 30 20% 92%;
-    --muted-foreground: 20 10% 45%;
+    --muted: 168 20% 25%;
+    --muted-foreground: 45 20% 70%;
 
-    --accent: 35 90% 60%;
-    --accent-foreground: 20 20% 15%;
+    --accent: 40 50% 60%;
+    --accent-foreground: 168 35% 18%;
 
-    --destructive: 0 84% 60%;
+    --destructive: 0 70% 55%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 30 20% 88%;
-    --input: 30 20% 88%;
-    --ring: 4 72% 56%;
+    --border: 168 20% 30%;
+    --input: 168 20% 30%;
+    --ring: 40 45% 65%;
 
     --radius: 1rem;
 
-    /* Custom tokens */
-    --blessing-red: 4 72% 56%;
-    --blessing-red-dark: 4 72% 46%;
-    --blessing-gold: 40 90% 55%;
-    --blessing-gold-light: 40 85% 70%;
-    --blessing-cream: 40 40% 96%;
-    --blessing-warm-white: 40 30% 99%;
+    /* Custom brand tokens */
+    --brand-teal: 168 35% 18%;
+    --brand-teal-light: 168 30% 25%;
+    --brand-gold: 40 45% 65%;
+    --brand-gold-light: 40 50% 75%;
+    --brand-cream: 45 30% 96%;
+    --brand-cream-dark: 45 20% 92%;
     
-    /* Gradients */
-    --gradient-blessing: linear-gradient(135deg, hsl(4 72% 56%) 0%, hsl(20 80% 50%) 100%);
-    --gradient-gold: linear-gradient(135deg, hsl(40 90% 55%) 0%, hsl(35 85% 60%) 100%);
-    --gradient-card: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(40 30% 98%) 100%);
-    --gradient-bg: linear-gradient(180deg, hsl(30 30% 97%) 0%, hsl(35 25% 94%) 100%);
-
+    /* Text colors */
+    --text-gold: 40 45% 65%;
+    --text-cream: 45 30% 92%;
+    --text-dark: 168 30% 20%;
+    --text-muted: 168 20% 55%;
+    
+    /* Card backgrounds */
+    --card-bg: 45 20% 96%;
+    --card-bg-dark: 168 25% 25%;
+    
     /* Shadows */
-    --shadow-card: 0 4px 20px -4px hsl(4 72% 56% / 0.15);
-    --shadow-button: 0 4px 16px -4px hsl(4 72% 56% / 0.4);
-    --shadow-soft: 0 2px 12px -2px hsl(20 20% 15% / 0.08);
+    --shadow-card: 0 4px 24px -4px hsl(168 35% 10% / 0.3);
+    --shadow-soft: 0 2px 12px -2px hsl(168 35% 10% / 0.2);
+    
+    /* Button gradient */
+    --gradient-gold: linear-gradient(180deg, hsl(40 50% 70%) 0%, hsl(40 40% 58%) 100%);
   }
 }
 
@@ -73,36 +80,36 @@
 }
 
 @layer utilities {
-  .gradient-blessing {
-    background: var(--gradient-blessing);
+  .font-serif-cn {
+    font-family: 'Noto Serif SC', serif;
   }
 
-  .gradient-gold {
+  .bg-brand-teal {
+    background-color: hsl(var(--brand-teal));
+  }
+
+  .bg-brand-gold {
+    background-color: hsl(var(--brand-gold));
+  }
+
+  .text-brand-gold {
+    color: hsl(var(--brand-gold));
+  }
+
+  .text-brand-cream {
+    color: hsl(var(--brand-cream));
+  }
+
+  .gradient-gold-btn {
     background: var(--gradient-gold);
   }
 
-  .gradient-card {
-    background: var(--gradient-card);
-  }
-
-  .gradient-bg {
-    background: var(--gradient-bg);
-  }
-
-  .shadow-card {
+  .shadow-card-custom {
     box-shadow: var(--shadow-card);
   }
 
-  .shadow-button {
-    box-shadow: var(--shadow-button);
-  }
-
-  .shadow-soft {
+  .shadow-soft-custom {
     box-shadow: var(--shadow-soft);
-  }
-
-  .text-balance {
-    text-wrap: balance;
   }
 }
 
@@ -128,11 +135,6 @@
   to { opacity: 1; transform: scale(1); }
 }
 
-@keyframes pulse-glow {
-  0%, 100% { box-shadow: 0 0 20px hsl(4 72% 56% / 0.3); }
-  50% { box-shadow: 0 0 30px hsl(4 72% 56% / 0.5); }
-}
-
 @keyframes float {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-6px); }
@@ -154,21 +156,24 @@
   animation: scale-in 0.3s ease-out forwards;
 }
 
-.animate-pulse-glow {
-  animation: pulse-glow 2s ease-in-out infinite;
-}
-
 .animate-float {
   animation: float 3s ease-in-out infinite;
 }
 
 /* Staggered animations */
-.stagger-1 { animation-delay: 0.1s; }
-.stagger-2 { animation-delay: 0.2s; }
-.stagger-3 { animation-delay: 0.3s; }
-.stagger-4 { animation-delay: 0.4s; }
+.stagger-1 { animation-delay: 0.1s; opacity: 0; }
+.stagger-2 { animation-delay: 0.2s; opacity: 0; }
+.stagger-3 { animation-delay: 0.3s; opacity: 0; }
+.stagger-4 { animation-delay: 0.4s; opacity: 0; }
 
 /* Mobile container */
 .mobile-container {
   @apply max-w-md mx-auto min-h-screen;
+}
+
+/* Decorative background pattern */
+.bg-pattern {
+  background-image: 
+    radial-gradient(ellipse at 0% 0%, hsl(168 30% 25% / 0.5) 0%, transparent 50%),
+    radial-gradient(ellipse at 100% 100%, hsl(168 30% 22% / 0.5) 0%, transparent 50%);
 }
