@@ -81,7 +81,7 @@ const BlessingEditPage: React.FC = () => {
               onChange={handleTextChange}
               placeholder="写下你想送出的祝福..."
               className="flex-1 w-full bg-transparent border-0 resize-none 
-                text-foreground placeholder:text-muted-foreground/50
+                text-black placeholder:text-muted-foreground/50
                 focus:outline-none text-base leading-relaxed font-sans"
             />
             
