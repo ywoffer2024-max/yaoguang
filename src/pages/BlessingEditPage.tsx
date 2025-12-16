@@ -83,7 +83,7 @@ const BlessingEditPage: React.FC = () => {
             </div>
 
             {/* Password Display - only show when password is enabled */}
-            {passwordOn && <div className="bg-background/40 border border-border/20 rounded-xl p-4 mb-3">
+            {passwordOn && <div className="bg-background/40 border-border/20 rounded-xl p-4 mb-3 border-2">
                 <p className="text-sm text-muted-foreground mb-2">您的密码</p>
                 <p className="text-3xl font-bold text-brand-gold tracking-[0.2em]">
                   {state.password || '9795'}
