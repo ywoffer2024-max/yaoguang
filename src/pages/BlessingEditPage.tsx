@@ -62,7 +62,7 @@ const BlessingEditPage: React.FC = () => {
           
           <div className="bg-brand-cream rounded-2xl p-5 min-h-[280px] flex flex-col relative overflow-hidden opacity-95">
             <textarea value={text} onChange={handleTextChange} placeholder="写下你想送出的祝福..." className="flex-1 w-full bg-transparent border-0 resize-none 
-                text-black placeholder:text-muted-foreground/50
+                text-black placeholder:text-muted-foreground/70
                 focus:outline-none text-base leading-relaxed font-sans" />
             
             <div className="flex justify-end pt-2">
