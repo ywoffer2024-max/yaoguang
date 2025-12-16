@@ -75,7 +75,7 @@ const BlessingEditPage: React.FC = () => {
 
         {/* Password Toggle Card */}
         <div className="animate-fade-in">
-          <div className="bg-background/30 backdrop-blur-sm border border-border/30 rounded-2xl p-5">
+          <div className="bg-background/30 backdrop-blur-sm border-border/30 rounded-2xl p-5 border-2">
             {/* Header with toggle */}
             <div className="flex items-center justify-between mb-3">
               <h3 className="font-semibold text-foreground text-base">密码保护</h3>
