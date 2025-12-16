@@ -84,7 +84,7 @@ export const useBlessing = () => {
   return context;
 };
 
-// Generate a random 4-digit password
+// Generate a fixed 4-digit password for testing
 function generatePassword(): string {
-  return Math.floor(1000 + Math.random() * 9000).toString();
+  return '1234';
 }
