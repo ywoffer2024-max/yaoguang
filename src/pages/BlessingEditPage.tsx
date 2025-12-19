@@ -75,23 +75,23 @@ const BlessingEditPage: React.FC = () => {
 
         {/* Password Toggle Card */}
         <div className="animate-fade-in">
-          <div className="bg-background/30 backdrop-blur-sm border-border/30 rounded-2xl p-5 border-2">
+          <div className="bg-[hsl(165,35%,18%)] rounded-2xl p-5 border-2 border-[hsl(165,30%,25%)]">
             {/* Header with toggle */}
             <div className="flex items-center justify-between mb-3">
-              <h3 className="font-semibold text-foreground text-base">密码保护</h3>
+              <h3 className="font-semibold text-brand-cream text-base">密码保护</h3>
               <Switch checked={passwordOn} onCheckedChange={handlePasswordToggle} className="data-[state=checked]:bg-brand-gold" />
             </div>
 
             {/* Password Display - only show when password is enabled */}
-            {passwordOn && <div className="bg-background/40 border-border/20 rounded-xl p-4 mb-3 border-2">
-                <p className="text-sm text-muted-foreground mb-2">您的密码</p>
+            {passwordOn && <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
+                <p className="text-sm text-brand-cream mb-2">您的密码</p>
                 <p className="text-3xl font-bold text-brand-gold tracking-[0.2em]">
                   {state.password || '9795'}
                 </p>
               </div>}
 
             {/* Description */}
-            <p className="text-sm text-stone-700 leading-relaxed">
+            <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
               {passwordOn ? '启用密码，收礼人查看祝福需输入此密码。' : '不启用密码，任何触碰此珠宝的人均可查看祝福。'}
             </p>
           </div>
