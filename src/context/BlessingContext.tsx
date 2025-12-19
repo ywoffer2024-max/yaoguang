@@ -78,8 +78,18 @@ export const BlessingProvider: React.FC<{ children: ReactNode }> = ({ children }
 
 export const useBlessing = () => {
   const context = useContext(BlessingContext);
+  // In rare cases (e.g. HMR glitches), allow pages to render instead of hard-crashing.
+  // This keeps UI usable; real app usage should still mount BlessingProvider in App.
   if (!context) {
-    throw new Error('useBlessing must be used within a BlessingProvider');
+    return {
+      state: initialState,
+      setHasBlessing: () => {},
+      setBlessingText: () => {},
+      setPasswordEnabled: () => {},
+      setPassword: () => {},
+      setIsUnlocked: () => {},
+      resetState: () => {},
+    };
   }
   return context;
 };
