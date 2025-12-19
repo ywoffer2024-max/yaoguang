@@ -62,11 +62,11 @@ const BlessingEditPage: React.FC = () => {
           
           <div className="bg-brand-cream rounded-2xl p-5 min-h-[280px] flex flex-col relative overflow-hidden opacity-95">
             <textarea value={text} onChange={handleTextChange} placeholder="写下你想送出的祝福..." className="flex-1 w-full bg-transparent border-0 resize-none 
-                text-black placeholder:text-muted-foreground/70
+                text-black placeholder:text-stone-500
                 focus:outline-none text-base leading-relaxed font-sans" />
             
             <div className="flex justify-end pt-2">
-              <span className={`text-sm ${text.length >= MAX_CHARS ? 'text-destructive' : 'text-muted-foreground/60'}`}>
+              <span className={`text-sm ${text.length >= MAX_CHARS ? 'text-destructive' : 'text-stone-500'}`}>
                 {text.length}/{MAX_CHARS}
               </span>
             </div>
@@ -91,7 +91,7 @@ const BlessingEditPage: React.FC = () => {
               </div>}
 
             {/* Description */}
-            <p className="text-sm text-muted-foreground/80 leading-relaxed">
+            <p className="text-sm text-stone-400 leading-relaxed">
               {passwordOn ? '启用密码，收礼人查看祝福需输入此密码。' : '不启用密码，任何触碰此珠宝的人均可查看祝福。'}
             </p>
           </div>
