@@ -19,9 +19,9 @@ const BlessingSuccessPage: React.FC = () => {
   };
 
   const copyMessage = () => {
-    let message = '有一段话想让你看到。手机轻触珠宝，即可读到我写给你的祝福。';
+    let message = '有一段话想让你看到～\n用手机轻轻触碰珠宝，就能读到我写给你的祝福。';
     if (state.passwordEnabled && state.password) {
-      message += `\n查看密码：${state.password}`;
+      message += `\n\n查看密码：${state.password}`;
     }
     navigator.clipboard.writeText(message);
     showToast('已复制，可发送给 TA');
@@ -48,18 +48,17 @@ const BlessingSuccessPage: React.FC = () => {
           </h1>
         </div>
 
-        {/* Password Status Card */}
+        {/* Access Method Card */}
         <div className="animate-fade-in-up stagger-1">
           <div className="bg-card rounded-2xl p-5 shadow-card-custom">
-            <h3 className="font-semibold text-card-foreground text-lg mb-3">密码保护</h3>
+            <h3 className="font-semibold text-card-foreground text-lg mb-3">访问方式</h3>
             
             {state.passwordEnabled && state.password ? (
               <>
-                {/* Password display box */}
+                {/* Password display - primary visual weight */}
                 <div className="bg-background border border-primary/30 rounded-xl p-4 mb-3">
-                  <p className="text-sm text-primary/70 mb-1">系统生成密码</p>
                   <div className="flex items-center justify-between">
-                    <p className="text-3xl font-bold text-primary tracking-[0.15em]">
+                    <p className="text-4xl font-bold text-primary tracking-[0.2em]">
                       {state.password}
                     </p>
                     <button
@@ -70,13 +69,13 @@ const BlessingSuccessPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                <p className="text-sm text-card-foreground/70 leading-relaxed">
-                  已启用密码，收礼人查看祝福需输入此密码。
+                <p className="text-sm text-muted-foreground leading-relaxed">
+                  收礼人需输入以上密码方可查看祝福
                 </p>
               </>
             ) : (
-              <p className="text-sm text-card-foreground/70 leading-relaxed">
-                您未启用密码，任何人都可以查看您的祝福。
+              <p className="text-sm text-card-foreground/80 leading-relaxed">
+                无需密码，手机触碰珠宝即可查看祝福
               </p>
             )}
           </div>
@@ -86,22 +85,23 @@ const BlessingSuccessPage: React.FC = () => {
         <div className="animate-fade-in-up stagger-2">
           <div className="bg-card rounded-2xl p-5 shadow-card-custom">
             <h3 className="font-semibold text-card-foreground text-lg mb-3">
-              发送给 <span className="italic">TA</span> 的消息
+              发送给 TA 的消息
             </h3>
 
-            <div className="bg-brand-cream rounded-xl p-4 relative">
+            <div className="bg-brand-cream rounded-2xl p-4 relative">
               <p className="text-card-foreground text-sm leading-relaxed pr-8">
-                有一段话想让你看到。手机轻触珠宝，即可读到我写给你的祝福。
-                {state.passwordEnabled && state.password && (
-                  <>
-                    <br />
-                    查看密码：{state.password}
-                  </>
-                )}
+                有一段话想让你看到～
+                <br />
+                用手机轻轻触碰珠宝，就能读到我写给你的祝福。
               </p>
+              {state.passwordEnabled && state.password && (
+                <p className="text-card-foreground/70 text-sm mt-3 pt-3 border-t border-card-foreground/10">
+                  查看密码：{state.password}
+                </p>
+              )}
               <button
                 onClick={copyMessage}
-                className="absolute bottom-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-brand-gold/10 transition-colors"
+                className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-brand-gold/10 transition-colors"
               >
                 <Copy className="w-4 h-4 text-muted-foreground" />
               </button>
