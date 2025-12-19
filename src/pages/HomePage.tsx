@@ -62,7 +62,7 @@ const HomePage: React.FC = () => {
             </h2>
             
             {/* Description */}
-            <p className="text-sm text-foreground/70 leading-relaxed">
+            <p className="text-sm text-muted-foreground leading-relaxed">
               寄一段心意，留一份温度<br />
               你的祝福，将随光泽一起被珍藏
             </p>
