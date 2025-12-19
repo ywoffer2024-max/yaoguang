@@ -1,5 +1,4 @@
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-import { generatePassword } from '@/utils/passwordGenerator';
 
 interface BlessingState {
   hasBlessing: boolean;
@@ -16,7 +15,6 @@ interface BlessingContextType {
   setPasswordEnabled: (enabled: boolean) => void;
   setPassword: (password: string) => void;
   setIsUnlocked: (unlocked: boolean) => void;
-  refreshPassword: () => void;
   resetState: () => void;
 }
 
@@ -57,12 +55,6 @@ export const BlessingProvider: React.FC<{ children: ReactNode }> = ({ children }
     setState(prev => ({ ...prev, isUnlocked: unlocked }));
   };
 
-  const refreshPassword = () => {
-    if (state.passwordEnabled) {
-      setState(prev => ({ ...prev, password: generatePassword() }));
-    }
-  };
-
   const resetState = () => {
     setState(initialState);
   };
@@ -76,7 +68,6 @@ export const BlessingProvider: React.FC<{ children: ReactNode }> = ({ children }
         setPasswordEnabled, 
         setPassword,
         setIsUnlocked,
-        refreshPassword,
         resetState 
       }}
     >
@@ -92,3 +83,8 @@ export const useBlessing = () => {
   }
   return context;
 };
+
+// Generate a fixed 4-digit password for testing
+function generatePassword(): string {
+  return '1234';
+}
