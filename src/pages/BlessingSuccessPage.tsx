@@ -48,34 +48,36 @@ const BlessingSuccessPage: React.FC = () => {
           </h1>
         </div>
 
-        {/* Access Method Card */}
+        {/* Password Status Card */}
         <div className="animate-fade-in-up stagger-1">
           <div className="bg-card rounded-2xl p-5 shadow-card-custom">
-            <h3 className="font-semibold text-card-foreground text-lg mb-3">访问方式</h3>
+            <h3 className="font-semibold text-card-foreground text-lg mb-3">
+              {state.passwordEnabled && state.password ? '密码已开启' : '密码未开启'}
+            </h3>
             
             {state.passwordEnabled && state.password ? (
               <>
-                {/* Password display - primary visual weight */}
+                {/* Password display */}
                 <div className="bg-background border border-primary/30 rounded-xl p-4 mb-3">
                   <div className="flex items-center justify-between">
-                    <p className="text-4xl font-bold text-primary tracking-[0.2em]">
-                      {state.password}
+                    <p className="text-sm text-muted-foreground">
+                      查看密码：<span className="text-2xl font-bold text-primary tracking-[0.15em] ml-2">{state.password}</span>
                     </p>
                     <button
                       onClick={copyPassword}
-                      className="w-10 h-10 rounded-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
                     >
-                      <Copy className="w-5 h-5 text-primary/70" />
+                      <Copy className="w-4 h-4 text-primary/70" />
                     </button>
                   </div>
                 </div>
                 <p className="text-sm text-muted-foreground leading-relaxed">
-                  收礼人需输入以上密码方可查看祝福
+                  收礼人查看祝福时需输入该密码
                 </p>
               </>
             ) : (
-              <p className="text-sm text-card-foreground/80 leading-relaxed">
-                无需密码，手机触碰珠宝即可查看祝福
+              <p className="text-sm text-muted-foreground leading-relaxed">
+                任何触碰该珠宝的人都可直接查看祝福
               </p>
             )}
           </div>
