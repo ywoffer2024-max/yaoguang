@@ -1,9 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/MobileLayout';
 import { Button } from '@/components/ui/button';
-import { useBlessing } from '@/context/BlessingContext';
-import { ArrowLeft } from 'lucide-react';
+import { useBlessing, generatePassword } from '@/context/BlessingContext';
+import { ArrowLeft, RefreshCw } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
 const MAX_CHARS = 200;
 const BlessingEditPage: React.FC = () => {
@@ -12,19 +12,46 @@ const BlessingEditPage: React.FC = () => {
     state,
     setBlessingText,
     setPasswordEnabled,
-    setHasBlessing
+    setHasBlessing,
+    setPassword
   } = useBlessing();
   const [text, setText] = useState(state.blessingText || '');
   const [passwordOn, setPasswordOn] = useState(state.passwordEnabled);
+  const [generatedPin, setGeneratedPin] = useState(state.password || '');
+
+  // Generate new password when toggle turns ON
+  useEffect(() => {
+    if (passwordOn && !generatedPin) {
+      const newPin = generatePassword();
+      setGeneratedPin(newPin);
+      setPassword(newPin);
+    }
+  }, [passwordOn]);
+
   const handleTextChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     const value = e.target.value;
     if (value.length <= MAX_CHARS) {
       setText(value);
     }
   };
+
   const handlePasswordToggle = (checked: boolean) => {
     setPasswordOn(checked);
+    if (checked) {
+      const newPin = generatePassword();
+      setGeneratedPin(newPin);
+      setPassword(newPin);
+    } else {
+      setGeneratedPin('');
+      setPassword('');
+    }
     setPasswordEnabled(checked);
+  };
+
+  const handleRefreshPassword = () => {
+    const newPin = generatePassword();
+    setGeneratedPin(newPin);
+    setPassword(newPin);
   };
   const handleSave = () => {
     if (text.trim()) {
@@ -84,9 +111,18 @@ const BlessingEditPage: React.FC = () => {
 
             {/* Password Display - only show when password is enabled */}
             {passwordOn && <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
-                <p className="text-sm text-brand-cream mb-2">您的密码</p>
-                <p className="text-3xl font-bold text-brand-gold tracking-[0.2em]">
-                  {state.password || '9795'}
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-sm text-brand-cream">您的密码</p>
+                  <button 
+                    onClick={handleRefreshPassword}
+                    className="p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
+                    aria-label="刷新密码"
+                  >
+                    <RefreshCw className="w-4 h-4 text-brand-gold" />
+                  </button>
+                </div>
+                <p className="text-3xl font-bold text-brand-gold tracking-[0.2em] select-all">
+                  {generatedPin}
                 </p>
               </div>}
 

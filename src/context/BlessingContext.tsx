@@ -94,7 +94,57 @@ export const useBlessing = () => {
   return context;
 };
 
-// Generate a fixed 4-digit password for testing
-function generatePassword(): string {
-  return '1234';
+// Generate a random 4-digit password with filtering rules
+export function generatePassword(): string {
+  const maxAttempts = 100;
+  
+  for (let attempt = 0; attempt < maxAttempts; attempt++) {
+    // Generate 4 random digits (0-9, excluding 4)
+    const allowedDigits = [0, 1, 2, 3, 5, 6, 7, 8, 9];
+    const digits: number[] = [];
+    
+    for (let i = 0; i < 4; i++) {
+      const randomIndex = Math.floor(Math.random() * allowedDigits.length);
+      digits.push(allowedDigits[randomIndex]);
+    }
+    
+    const pin = digits.join('');
+    
+    // Check if all digits are the same (0000, 1111, etc.)
+    if (digits.every(d => d === digits[0])) {
+      continue;
+    }
+    
+    // Check for sequential patterns (ascending)
+    const ascending = ['0123', '1235', '2356', '3567', '5678', '6789'];
+    // Check for sequential patterns (descending)  
+    const descending = ['9876', '8765', '7658', '6587', '5876', '3210', '2103', '1032'];
+    
+    // More comprehensive sequential check
+    let isSequential = false;
+    
+    // Check if digits form a +1 sequence
+    if (digits[1] === digits[0] + 1 && 
+        digits[2] === digits[1] + 1 && 
+        digits[3] === digits[2] + 1) {
+      isSequential = true;
+    }
+    
+    // Check if digits form a -1 sequence
+    if (digits[1] === digits[0] - 1 && 
+        digits[2] === digits[1] - 1 && 
+        digits[3] === digits[2] - 1) {
+      isSequential = true;
+    }
+    
+    if (isSequential) {
+      continue;
+    }
+    
+    // Passed all checks
+    return pin;
+  }
+  
+  // Fallback (should rarely happen)
+  return '5782';
 }
