@@ -17,15 +17,20 @@ export const MobileLayout: React.FC<MobileLayoutProps> = ({
   useSecondaryBg = false,
 }) => {
   return (
-    <div className="min-h-screen bg-background bg-pattern relative">
-      {/* Secondary background image overlay - at bottom layer */}
+    <div className="min-h-screen bg-background bg-pattern relative isolate">
+      {/* Background decoration layer - completely isolated stacking context */}
       {useSecondaryBg && (
         <div 
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none z-0"
-          style={{ backgroundImage: `url(${backgroundSecondary})` }}
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat pointer-events-none"
+          style={{ 
+            backgroundImage: `url(${backgroundSecondary})`,
+            zIndex: -1 
+          }}
+          aria-hidden="true"
         />
       )}
-      <div className={`mobile-container relative overflow-hidden z-10 ${className}`}>
+      {/* Content layer - new stacking context */}
+      <div className={`mobile-container relative overflow-hidden ${className}`}>
         {children}
       </div>
     </div>

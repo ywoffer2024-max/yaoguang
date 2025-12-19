@@ -99,7 +99,7 @@ const BlessingEditPage: React.FC = () => {
       </main>
 
       {/* Bottom Action */}
-      <div className="p-5 relative z-20">
+      <div className="p-5">
         <Button variant="gold" size="full" onClick={handleSave} disabled={!canSave} className="font-semibold">
           保存祝福
         </Button>
