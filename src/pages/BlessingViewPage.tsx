@@ -22,10 +22,13 @@ const BlessingViewPage: React.FC = () => {
 
   const mockBlessingText = state.blessingText || '愿你前程似锦，繁花似梦\n心中有光，步履生辉\n所遇皆良人，所行皆坦途';
 
+  // 测试用固定密码，与创建页的随机密码逻辑完全隔离
+  const TEST_PASSWORD = '1234';
   const needsPassword = state.passwordEnabled && !state.isUnlocked;
 
   const handlePasswordComplete = (password: string) => {
-    if (password === state.password) {
+    // 仅校验固定测试密码，不从 context 读取
+    if (password === TEST_PASSWORD) {
       setIsUnlocked(true);
       setPasswordError(false);
     } else {
@@ -119,6 +122,10 @@ const BlessingViewPage: React.FC = () => {
                 onErrorClear={() => setPasswordError(false)}
               />
             </div>
+
+            <p className="text-muted-foreground text-xs text-center leading-relaxed mb-3">
+              本测试密码默认是 1234，仅为测试用，实际将会根据该 NFC_ID 在数据库中是否有祝福且有密码、以及密码是什么来判断。
+            </p>
 
             {passwordError ? (
               <p className="text-destructive text-sm text-center animate-fade-in">
