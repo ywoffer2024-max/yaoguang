@@ -72,9 +72,14 @@ const EntryPage: React.FC = () => {
         </div>
 
         {/* Footer hint */}
-        <p className="text-center text-sm text-muted-foreground animate-fade-in stagger-3">
-          NFC H5 验证测试入口
-        </p>
+        <div className="text-center animate-fade-in stagger-3 space-y-1">
+          <p className="text-sm text-muted-foreground">
+            NFC H5 验证测试入口
+          </p>
+          <p className="text-xs text-muted-foreground/70">
+            本页面为模拟后端与数据库判断逻辑的测试入口，正式环境中将移除。
+          </p>
+        </div>
       </div>
     </MobileLayout>
   );
