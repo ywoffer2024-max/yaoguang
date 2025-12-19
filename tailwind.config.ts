@@ -59,6 +59,9 @@ export default {
           cream: "hsl(var(--brand-cream))",
           "cream-dark": "hsl(var(--brand-cream-dark))",
         },
+        text: {
+          secondary: "hsl(var(--text-secondary))",
+        },
       },
       borderRadius: {
         lg: "var(--radius)",
