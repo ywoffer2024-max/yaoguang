@@ -66,7 +66,7 @@ const EntryPage: React.FC = () => {
               <span className="text-lg text-card-foreground">无祝福</span>
             </div>
             <span className="text-sm text-muted-foreground font-normal">
-              模拟未创建祝福的状态
+              模拟判断数据库中该NFC_ID没有录入的祝福
             </span>
           </Button>
         </div>
