@@ -51,7 +51,7 @@ const EntryPage: React.FC = () => {
               <span className="text-lg text-card-foreground">有祝福</span>
             </div>
             <span className="text-sm text-muted-foreground font-normal">
-              模拟已创建祝福的状态
+              模拟判断数据库中该NFC_ID有录入的祝福
             </span>
           </Button>
 
