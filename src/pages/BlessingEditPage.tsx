@@ -58,6 +58,8 @@ const BlessingEditPage: React.FC = () => {
       setBlessingText(text);
       setHasBlessing(true);
       setPasswordEnabled(passwordOn);
+      // Ensure the exact displayed password is saved to context
+      setPassword(passwordOn ? generatedPin : '');
       navigate('/success');
     }
   };
