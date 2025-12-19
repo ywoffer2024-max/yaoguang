@@ -3,16 +3,19 @@ import { useNavigate } from 'react-router-dom';
 import { MobileLayout } from '@/components/MobileLayout';
 import { Button } from '@/components/ui/button';
 import { useBlessing } from '@/context/BlessingContext';
-import { ArrowLeft } from 'lucide-react';
+import { ArrowLeft, RefreshCw } from 'lucide-react';
 import { Switch } from '@/components/ui/switch';
+
 const MAX_CHARS = 200;
+
 const BlessingEditPage: React.FC = () => {
   const navigate = useNavigate();
   const {
     state,
     setBlessingText,
     setPasswordEnabled,
-    setHasBlessing
+    setHasBlessing,
+    refreshPassword
   } = useBlessing();
   const [text, setText] = useState(state.blessingText || '');
   const [passwordOn, setPasswordOn] = useState(state.passwordEnabled);
@@ -83,12 +86,24 @@ const BlessingEditPage: React.FC = () => {
             </div>
 
             {/* Password Display - only show when password is enabled */}
-            {passwordOn && <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
-                <p className="text-sm text-brand-cream mb-2">您的密码</p>
+            {passwordOn && (
+              <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
+                <div className="flex items-center justify-between mb-2">
+                  <p className="text-sm text-brand-cream">您的密码</p>
+                  <button
+                    type="button"
+                    onClick={refreshPassword}
+                    className="flex items-center gap-1.5 text-sm text-brand-gold/80 hover:text-brand-gold transition-colors"
+                  >
+                    <RefreshCw className="w-4 h-4" />
+                    <span>换一个</span>
+                  </button>
+                </div>
                 <p className="text-3xl font-bold text-brand-gold tracking-[0.2em]">
-                  {state.password || '9795'}
+                  {state.password}
                 </p>
-              </div>}
+              </div>
+            )}
 
             {/* Description */}
             <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
