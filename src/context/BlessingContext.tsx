@@ -42,8 +42,7 @@ export const BlessingProvider: React.FC<{ children: ReactNode }> = ({ children }
   const setPasswordEnabled = (enabled: boolean) => {
     setState(prev => ({ 
       ...prev, 
-      passwordEnabled: enabled,
-      password: enabled ? generatePassword() : ''
+      passwordEnabled: enabled
     }));
   };
 
