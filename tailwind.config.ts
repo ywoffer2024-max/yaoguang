@@ -61,7 +61,6 @@ export default {
         },
         text: {
           secondary: "hsl(var(--text-secondary))",
-          caption: "hsl(var(--text-caption))",
         },
       },
       borderRadius: {
