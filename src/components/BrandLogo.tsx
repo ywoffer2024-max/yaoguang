@@ -8,9 +8,9 @@ interface BrandLogoProps {
 
 export const BrandLogo: React.FC<BrandLogoProps> = ({ size = 'md', className = '' }) => {
   const sizes = {
-    sm: 80,
-    md: 120,
-    lg: 160,
+    sm: 88,
+    md: 132,
+    lg: 176,
   };
 
   const logoSize = sizes[size];
