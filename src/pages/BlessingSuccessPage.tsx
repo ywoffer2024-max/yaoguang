@@ -76,7 +76,7 @@ const BlessingSuccessPage: React.FC = () => {
                 </p>
               </>
             ) : (
-              <p className="text-sm leading-relaxed" style={{ color: '#3A4A45', fontWeight: 500 }}>
+              <p className="text-card-foreground text-sm leading-relaxed">
                 任何触碰该珠宝的人都可直接查看祝福
               </p>
             )}
