@@ -40,8 +40,8 @@ const BlessingSuccessPage: React.FC = () => {
       <main className="flex-1 px-5 py-10 space-y-5 overflow-y-auto">
         {/* Success Header */}
         <div className="text-center space-y-4 animate-fade-in pt-4">
-          <div className="w-24 h-24 mx-auto rounded-full bg-brand-gold flex items-center justify-center shadow-card-custom">
-            <Check className="w-12 h-12 text-white" strokeWidth={3} />
+          <div className="w-[86px] h-[86px] mx-auto rounded-full bg-brand-gold flex items-center justify-center shadow-card-custom">
+            <Check className="w-[43px] h-[43px] text-white" strokeWidth={3} />
           </div>
           <h1 className="text-xl font-medium text-foreground">
             你的祝福已成功保存
@@ -76,7 +76,7 @@ const BlessingSuccessPage: React.FC = () => {
                 </p>
               </>
             ) : (
-              <p className="text-sm text-muted-foreground leading-relaxed">
+              <p className="text-sm leading-relaxed" style={{ color: '#3A4A45', fontWeight: 500 }}>
                 任何触碰该珠宝的人都可直接查看祝福
               </p>
             )}
