@@ -71,7 +71,7 @@ const BlessingSuccessPage: React.FC = () => {
                     </button>
                   </div>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-text-caption font-medium leading-relaxed">
                   收礼人查看祝福时需输入该密码
                 </p>
               </>
