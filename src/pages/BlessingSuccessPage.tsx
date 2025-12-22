@@ -50,32 +50,36 @@ const BlessingSuccessPage: React.FC = () => {
 
         {/* Password Status Card */}
         <div className="animate-fade-in-up stagger-1">
-          <div className="bg-card rounded-2xl p-5 shadow-card-custom">
-            <h3 className="font-semibold text-card-foreground text-lg mb-3">
+          <div className="bg-[hsl(165,35%,18%)] rounded-2xl p-5 border-2 border-[hsl(165,30%,25%)]">
+            <h3 className="font-semibold text-brand-cream text-base mb-3">
               {state.passwordEnabled && state.password ? '密码已开启' : '密码未开启'}
             </h3>
             
             {state.passwordEnabled && state.password ? (
               <>
                 {/* Password display */}
-                <div className="bg-muted/50 rounded-xl p-4 mb-3">
-                  <div className="flex items-center justify-between">
-                    <span className="text-2xl font-semibold text-foreground/80 tracking-[0.2em]">{state.password}</span>
+                <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
+                  <div className="flex items-center justify-between mb-2">
+                    <p className="text-sm text-brand-cream">访问密码</p>
                     <button
                       onClick={copyPassword}
-                      className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-muted transition-colors"
+                      className="p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
+                      aria-label="复制密码"
                     >
-                      <Copy className="w-4 h-4 text-muted-foreground" />
+                      <Copy className="w-4 h-4 text-brand-gold" />
                     </button>
                   </div>
+                  <p className="text-3xl font-bold text-brand-gold tracking-[0.2em] select-all">
+                    {state.password}
+                  </p>
                 </div>
-                <p className="text-sm text-muted-foreground leading-relaxed">
+                <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
                   收礼人查看祝福时需输入该密码
                 </p>
               </>
             ) : (
-              <p className="text-card-foreground text-sm leading-relaxed">
-                任何触碰该珠宝的人都可直接查看祝福
+              <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
+                任何用手机靠近此珠宝的用户均可查看祝福
               </p>
             )}
           </div>
