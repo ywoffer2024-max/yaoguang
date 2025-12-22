@@ -97,20 +97,18 @@ const BlessingSuccessPage: React.FC = () => {
                 用手机轻轻触碰珠宝，就能读到我写给你的祝福。
               </p>
               {state.passwordEnabled && state.password && (
-                <>
-                  <div className="mt-3 pt-3 border-t border-card-foreground/10">
-                    <p className="text-card-foreground/70 text-sm">
-                      祝福钥匙：{state.password}
-                    </p>
-                  </div>
+                <div className="flex items-end justify-between mt-3 pt-3 border-t border-card-foreground/10">
+                  <p className="text-card-foreground/70 text-sm">
+                    祝福钥匙：{state.password}
+                  </p>
                   <button
                     onClick={copyMessage}
-                    className="absolute bottom-3 right-3 p-0.5 hover:opacity-80 transition-opacity"
+                    className="p-0.5 hover:opacity-80 transition-opacity"
                     aria-label="复制消息"
                   >
                     <Copy className="w-[15px] h-[15px] text-card-foreground/40" />
                   </button>
-                </>
+                </div>
               )}
               {!state.passwordEnabled && (
                 <button
