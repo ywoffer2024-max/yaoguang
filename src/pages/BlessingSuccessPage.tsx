@@ -108,7 +108,7 @@ const BlessingSuccessPage: React.FC = () => {
                     className="absolute bottom-3 right-3 p-0.5 hover:opacity-80 transition-opacity"
                     aria-label="复制消息"
                   >
-                    <Copy className="w-4 h-4 text-card-foreground/40" />
+                    <Copy className="w-[15px] h-[15px] text-card-foreground/40" />
                   </button>
                 </>
               )}
@@ -118,7 +118,7 @@ const BlessingSuccessPage: React.FC = () => {
                   className="absolute bottom-3 right-3 p-0.5 hover:opacity-80 transition-opacity"
                   aria-label="复制消息"
                 >
-                  <Copy className="w-4 h-4 text-card-foreground/40" />
+                  <Copy className="w-[15px] h-[15px] text-card-foreground/40" />
                 </button>
               )}
             </div>
