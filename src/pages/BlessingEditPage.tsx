@@ -129,7 +129,7 @@ const BlessingEditPage: React.FC = () => {
               </div>}
 
             {/* Description */}
-            <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
+            <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed pl-1">
               {passwordOn ? ' 启用密码，收礼人查看祝福需输入此密码。' : '不启用密码，任何用手机靠近此珠宝的用户均可查看祝福。'}
             </p>
           </div>
