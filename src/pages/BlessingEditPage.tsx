@@ -114,7 +114,7 @@ const BlessingEditPage: React.FC = () => {
             {/* Password Display - only show when password is enabled */}
             {passwordOn && <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
                 <div className="flex items-center justify-between mb-2">
-                  <p className="text-sm text-brand-cream">您的密码</p>
+                  <p className="text-sm text-brand-cream">访问密码</p>
                   <button 
                     onClick={handleRefreshPassword}
                     className="p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
