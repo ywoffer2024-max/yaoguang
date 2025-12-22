@@ -21,7 +21,7 @@ const BlessingSuccessPage: React.FC = () => {
   const copyMessage = () => {
     let message = '有一段话想让你看到～\n用手机轻轻触碰珠宝，就能读到我写给你的祝福。';
     if (state.passwordEnabled && state.password) {
-      message += `\n\n查看密码：${state.password}`;
+      message += `\n\n祝福钥匙：${state.password}`;
     }
     navigator.clipboard.writeText(message);
     showToast('已复制，可发送给 TA');
@@ -60,7 +60,7 @@ const BlessingSuccessPage: React.FC = () => {
                 {/* Password display */}
                 <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
                   <div className="flex items-center justify-between mb-2">
-                    <p className="text-sm text-brand-cream">访问密码</p>
+                    <p className="text-sm text-brand-cream">祝福钥匙</p>
                     <button
                       onClick={copyPassword}
                       className="p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
@@ -100,7 +100,7 @@ const BlessingSuccessPage: React.FC = () => {
               </p>
               {state.passwordEnabled && state.password && (
                 <p className="text-card-foreground/70 text-sm mt-3 pt-3 border-t border-card-foreground/10">
-                  查看密码：{state.password}
+                  祝福钥匙：{state.password}
                 </p>
               )}
               <button

@@ -113,7 +113,7 @@ const BlessingViewPage: React.FC = () => {
               </div>
             </div>
 
-            <h2 className="text-xl font-medium text-card-foreground text-center mb-8">请输入查看密码</h2>
+            <h2 className="text-xl font-medium text-card-foreground text-center mb-8">请输入祝福钥匙</h2>
 
             <div className="mb-8">
               <PasswordInput
@@ -133,7 +133,7 @@ const BlessingViewPage: React.FC = () => {
                   这份祝福已启用密码保护
                 </p>
                 <p className="text-muted-foreground text-sm leading-relaxed">
-                  请向送礼人索取访问密码
+                  请向送礼人索取祝福钥匙
                 </p>
               </div>
             )}
