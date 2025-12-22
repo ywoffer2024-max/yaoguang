@@ -129,10 +129,10 @@ const BlessingViewPage: React.FC = () => {
               </p>
             ) : (
               <div className="text-center space-y-1">
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   这份祝福已启用密码保护
                 </p>
-                <p className="text-foreground/60 text-sm leading-relaxed">
+                <p className="text-muted-foreground text-sm leading-relaxed">
                   请向送礼人索取访问密码
                 </p>
               </div>
