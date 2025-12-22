@@ -58,20 +58,18 @@ const BlessingSuccessPage: React.FC = () => {
             {state.passwordEnabled && state.password ? (
               <>
                 {/* Password display */}
-                <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)]">
-                  <div className="flex items-center justify-between mb-2">
-                    <p className="text-sm text-brand-cream">祝福钥匙</p>
-                    <button
-                      onClick={copyPassword}
-                      className="p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
-                      aria-label="复制密码"
-                    >
-                      <Copy className="w-4 h-4 text-brand-gold" />
-                    </button>
-                  </div>
-                  <p className="text-3xl font-bold text-brand-gold tracking-[0.2em] select-all">
+                <div className="bg-[hsl(165,30%,22%)] rounded-xl p-4 mb-3 border-2 border-[hsl(165,25%,28%)] relative">
+                  <p className="text-sm text-brand-cream mb-2">祝福钥匙</p>
+                  <p className="text-3xl font-bold text-brand-gold tracking-[0.2em] select-all pr-8">
                     {state.password}
                   </p>
+                  <button
+                    onClick={copyPassword}
+                    className="absolute bottom-4 right-4 p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors opacity-60 hover:opacity-100"
+                    aria-label="复制密码"
+                  >
+                    <Copy className="w-4 h-4 text-brand-cream" />
+                  </button>
                 </div>
                 <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
                   收礼人查看祝福时需输入该密码
