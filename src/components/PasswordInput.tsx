@@ -88,7 +88,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e)}
           onPaste={handlePaste}
-          className={`w-16 h-16 text-center text-2xl font-bold rounded-2xl border
+          className={`w-[58px] h-[58px] text-center text-2xl font-bold rounded-2xl border
             transition-all duration-200 outline-none
             ${error 
               ? 'border-destructive bg-destructive/10 animate-shake' 
