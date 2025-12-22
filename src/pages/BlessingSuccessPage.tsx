@@ -65,10 +65,10 @@ const BlessingSuccessPage: React.FC = () => {
                   </p>
                   <button
                     onClick={copyPassword}
-                    className="absolute bottom-4 right-4 p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
+                    className="absolute bottom-4 right-4 p-2 rounded-lg bg-[hsl(165,25%,28%)] hover:bg-[hsl(165,25%,32%)] transition-colors"
                     aria-label="复制密码"
                   >
-                    <Copy className="w-4 h-4 text-brand-gold/70 hover:text-brand-gold" />
+                    <Copy className="w-4 h-4 text-brand-gold/80 hover:text-brand-gold" />
                   </button>
                 </div>
                 <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
