@@ -68,7 +68,7 @@ const BlessingSuccessPage: React.FC = () => {
                     className="absolute bottom-4 right-4 p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors opacity-60 hover:opacity-100"
                     aria-label="复制密码"
                   >
-                    <Copy className="w-4 h-4 text-brand-cream" />
+                    <Copy className="w-4 h-4 text-brand-gold" />
                   </button>
                 </div>
                 <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
@@ -90,8 +90,8 @@ const BlessingSuccessPage: React.FC = () => {
               发送给 TA 的消息
             </h3>
 
-            <div className="bg-brand-cream rounded-2xl p-4 relative">
-              <p className="text-card-foreground text-sm leading-relaxed pr-8">
+            <div className="bg-brand-cream rounded-2xl p-4 pb-10 relative">
+              <p className="text-card-foreground text-sm leading-relaxed">
                 有一段话想让你看到～
                 <br />
                 用手机轻轻触碰珠宝，就能读到我写给你的祝福。
@@ -103,9 +103,9 @@ const BlessingSuccessPage: React.FC = () => {
               )}
               <button
                 onClick={copyMessage}
-                className="absolute top-4 right-4 w-8 h-8 rounded-lg flex items-center justify-center hover:bg-brand-gold/10 transition-colors"
+                className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
               >
-                <Copy className="w-4 h-4 text-muted-foreground" />
+                <Copy className="w-4 h-4 text-card-foreground" />
               </button>
             </div>
           </div>
