@@ -76,7 +76,7 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
   };
 
   return (
-    <div className="flex justify-center gap-3">
+    <div className="flex justify-center gap-4">
       {values.map((value, index) => (
         <input
           key={index}
@@ -88,13 +88,11 @@ export const PasswordInput: React.FC<PasswordInputProps> = ({
           onChange={(e) => handleChange(index, e.target.value)}
           onKeyDown={(e) => handleKeyDown(index, e)}
           onPaste={handlePaste}
-          className={`w-14 h-16 text-center text-2xl font-bold rounded-xl border-2 
+          className={`w-16 h-16 text-center text-2xl font-bold rounded-2xl
             transition-all duration-200 outline-none
             ${error 
-              ? 'border-destructive bg-destructive/10 animate-shake' 
-              : value 
-                ? 'border-brand-gold/50 bg-white' 
-                : 'border-brand-gold/20 bg-white focus:border-brand-gold/50'
+              ? 'border border-destructive bg-destructive/10 animate-shake' 
+              : 'border-0 bg-[#F5F3EE] focus:ring-2 focus:ring-brand-gold/30'
             }`}
           style={{ color: 'hsl(168 30% 20%)' }}
         />
