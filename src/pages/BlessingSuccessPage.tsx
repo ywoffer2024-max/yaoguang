@@ -90,23 +90,33 @@ const BlessingSuccessPage: React.FC = () => {
               发送给 TA 的消息
             </h3>
 
-            <div className="bg-brand-cream rounded-2xl p-4 pb-10 relative">
+            <div className="bg-brand-cream rounded-2xl p-4 relative">
               <p className="text-card-foreground text-sm leading-relaxed">
                 有一段话想让你看到～
                 <br />
                 用手机轻轻触碰珠宝，就能读到我写给你的祝福。
               </p>
               {state.passwordEnabled && state.password && (
-                <p className="text-card-foreground/70 text-sm mt-3 pt-3 border-t border-card-foreground/10">
-                  祝福钥匙：{state.password}
-                </p>
+                <div className="flex items-center justify-between mt-3 pt-3 border-t border-card-foreground/10">
+                  <p className="text-card-foreground/70 text-sm">
+                    祝福钥匙：{state.password}
+                  </p>
+                  <button
+                    onClick={copyMessage}
+                    className="p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
+                  >
+                    <Copy className="w-4 h-4 text-card-foreground" />
+                  </button>
+                </div>
               )}
-              <button
-                onClick={copyMessage}
-                className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
-              >
-                <Copy className="w-4 h-4 text-card-foreground" />
-              </button>
+              {!state.passwordEnabled && (
+                <button
+                  onClick={copyMessage}
+                  className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
+                >
+                  <Copy className="w-4 h-4 text-card-foreground" />
+                </button>
+              )}
             </div>
           </div>
         </div>
