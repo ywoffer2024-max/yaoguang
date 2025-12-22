@@ -58,16 +58,14 @@ const BlessingSuccessPage: React.FC = () => {
             {state.passwordEnabled && state.password ? (
               <>
                 {/* Password display */}
-                <div className="bg-background border border-primary/30 rounded-xl p-4 mb-3">
+                <div className="bg-muted/50 rounded-xl p-4 mb-3">
                   <div className="flex items-center justify-between">
-                    <p className="text-sm text-muted-foreground">
-                      查看密码：<span className="text-2xl font-bold text-primary tracking-[0.15em] ml-2">{state.password}</span>
-                    </p>
+                    <span className="text-2xl font-semibold text-foreground/80 tracking-[0.2em]">{state.password}</span>
                     <button
                       onClick={copyPassword}
-                      className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-primary/10 transition-colors"
+                      className="w-9 h-9 rounded-lg flex items-center justify-center hover:bg-muted transition-colors"
                     >
-                      <Copy className="w-4 h-4 text-primary/70" />
+                      <Copy className="w-4 h-4 text-muted-foreground" />
                     </button>
                   </div>
                 </div>
