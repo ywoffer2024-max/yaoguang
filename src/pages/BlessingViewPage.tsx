@@ -108,14 +108,14 @@ const BlessingViewPage: React.FC = () => {
         <div className="w-full max-w-sm animate-fade-in">
           <div className="bg-card rounded-3xl p-8 shadow-card-custom">
             <div className="flex justify-center mb-6">
-              <div className="w-16 h-16 rounded-full bg-brand-gold/15 flex items-center justify-center">
-                <Lock className="w-7 h-7 text-brand-gold" />
+              <div className="w-20 h-20 rounded-full bg-[#F5F3EE] flex items-center justify-center">
+                <Lock className="w-8 h-8 text-brand-gold" strokeWidth={1.5} />
               </div>
             </div>
 
-            <h2 className="text-xl font-semibold text-card-foreground text-center mb-6">请输入密码</h2>
+            <h2 className="text-xl font-medium text-card-foreground text-center mb-8">请输入查看密码</h2>
 
-            <div className="mb-6">
+            <div className="mb-8">
               <PasswordInput
                 onComplete={handlePasswordComplete}
                 error={passwordError}
@@ -123,18 +123,19 @@ const BlessingViewPage: React.FC = () => {
               />
             </div>
 
-            <p className="text-muted-foreground text-xs text-center leading-relaxed mb-3">
-              本测试密码默认是 1234，仅为测试用，实际将会根据该 NFC_ID 在数据库中是否有祝福且有密码、以及密码是什么来判断。
-            </p>
-
             {passwordError ? (
               <p className="text-destructive text-sm text-center animate-fade-in">
                 密码不正确，请再试一次
               </p>
             ) : (
-              <p className="text-muted-foreground text-sm text-center leading-relaxed">
-                这份祝福已启用密码，请向送礼人索取查看密码
-              </p>
+              <div className="text-center space-y-1">
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  这份祝福已启用密码保护
+                </p>
+                <p className="text-muted-foreground text-sm leading-relaxed">
+                  请向送礼人索取访问密码
+                </p>
+              </div>
             )}
           </div>
         </div>
