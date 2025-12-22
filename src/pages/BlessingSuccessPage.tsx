@@ -65,10 +65,10 @@ const BlessingSuccessPage: React.FC = () => {
                   </p>
                   <button
                     onClick={copyPassword}
-                    className="absolute bottom-4 right-4 p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors opacity-60 hover:opacity-100"
+                    className="absolute bottom-4 right-4 p-1.5 rounded-lg hover:bg-[hsl(165,25%,28%)] transition-colors"
                     aria-label="复制密码"
                   >
-                    <Copy className="w-4 h-4 text-brand-gold" />
+                    <Copy className="w-4 h-4 text-brand-gold/70 hover:text-brand-gold" />
                   </button>
                 </div>
                 <p className="text-sm text-[hsl(45,20%,85%)] leading-relaxed">
@@ -103,18 +103,18 @@ const BlessingSuccessPage: React.FC = () => {
                   </p>
                   <button
                     onClick={copyMessage}
-                    className="p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
+                    className="p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors"
                   >
-                    <Copy className="w-4 h-4 text-card-foreground" />
+                    <Copy className="w-4 h-4 text-brand-gold/60 hover:text-brand-gold" />
                   </button>
                 </div>
               )}
               {!state.passwordEnabled && (
                 <button
                   onClick={copyMessage}
-                  className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors opacity-50 hover:opacity-100"
+                  className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors"
                 >
-                  <Copy className="w-4 h-4 text-card-foreground" />
+                  <Copy className="w-4 h-4 text-brand-gold/60 hover:text-brand-gold" />
                 </button>
               )}
             </div>
