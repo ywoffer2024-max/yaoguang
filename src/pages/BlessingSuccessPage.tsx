@@ -103,18 +103,18 @@ const BlessingSuccessPage: React.FC = () => {
                   </p>
                   <button
                     onClick={copyMessage}
-                    className="p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors"
+                    className="p-2 rounded-lg bg-brand-gold/15 hover:bg-brand-gold/25 transition-colors"
                   >
-                    <Copy className="w-4 h-4 text-brand-gold/60 hover:text-brand-gold" />
+                    <Copy className="w-4 h-4 text-brand-gold/80 hover:text-brand-gold" />
                   </button>
                 </div>
               )}
               {!state.passwordEnabled && (
                 <button
                   onClick={copyMessage}
-                  className="absolute bottom-3 right-3 p-1.5 rounded-lg hover:bg-brand-gold/10 transition-colors"
+                  className="absolute bottom-3 right-3 p-2 rounded-lg bg-brand-gold/15 hover:bg-brand-gold/25 transition-colors"
                 >
-                  <Copy className="w-4 h-4 text-brand-gold/60 hover:text-brand-gold" />
+                  <Copy className="w-4 h-4 text-brand-gold/80 hover:text-brand-gold" />
                 </button>
               )}
             </div>
